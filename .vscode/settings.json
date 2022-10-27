@@ -1,0 +1,5 @@
+{
+    "env": {
+        "nodeDir": "/opt/node-v18"
+    }
+}

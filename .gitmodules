@@ -1,0 +1,3 @@
+[submodule "modules/panels-layout"]
+	path = modules/panels-layout
+	url = git@github.com-personal:vagran/panels-layout.git
