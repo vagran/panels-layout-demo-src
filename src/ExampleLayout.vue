@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import type * as PL from "panels-layout/src/PanelsLayout.vue"
+import type * as PL from "panels-layout/src/PublicTypes"
 import PanelsLayout from "panels-layout/src/PanelsLayout.vue"
-import AboutView from "@/components/AboutView.vue"
-import ViewWithLocalState from "@/components/ViewWithLocalState.vue"
+import AboutView from "@/views/AboutView.vue"
+import ViewWithLocalState from "@/views/ViewWithLocalState.vue"
 
 enum ContentSelector {
     ABOUT,
