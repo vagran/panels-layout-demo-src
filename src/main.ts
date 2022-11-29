@@ -1,7 +1,20 @@
 import { createApp } from "vue"
 import App from "./App.vue"
 import { createPinia } from "pinia"
-import { Quasar, setCssVar, colors } from "quasar"
+import { Quasar, setCssVar, colors,
+    QBtn,
+    QFooter,
+    QHeader,
+    QIcon,
+    QItem,
+    QItemSection,
+    QLayout,
+    QPage,
+    QPageContainer,
+    QSelect,
+    QToolbar,
+    QToolbarTitle
+} from "quasar"
 
 import "quasar/dist/quasar.css"
 import "@quasar/extras/material-icons/material-icons.css"
@@ -30,8 +43,23 @@ createApp(App)
             }
         },
         plugins: {},
+        components: {
+            QBtn,
+            QFooter,
+            QHeader,
+            QIcon,
+            QItem,
+            QItemSection,
+            QLayout,
+            QPage,
+            QPageContainer,
+            QSelect,
+            QToolbar,
+            QToolbarTitle
+        }
     })
     .mount("#app")
 
 //XXX handle theme change
 setCssVar("primary-dark", colors.lighten(colors.getPaletteColor("primary"), -50))
+setCssVar("weak", colors.lighten(colors.getPaletteColor("dark"), 15))

@@ -56,8 +56,17 @@ const rightDrawerOpen = ref(false)
     background: var(--q-primary-dark) !important;
 }
 
+.text-weak {
+    color: var(--q-weak) !important;
+}
+
+.bg-weak {
+    background: var(--q-weak) !important;
+}
+
 body.body--dark {
     color: #c6d5e4 !important;
+    background-color: var(--q-dark) !important;
 
     a {
         color: #b4cec5;
