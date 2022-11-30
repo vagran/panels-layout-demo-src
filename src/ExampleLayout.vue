@@ -33,9 +33,8 @@
 
     <template #expandGhostTo="slot">
         <div class="expandGhostFromTo" :class="{active: slot.isActive}">
-            <div v-if="slot.isActive" class="iconContainer">
-                <q-icon :name="_GetDirectionIconName(slot.dir)" color="weak" class="icon" />
-            </div>
+            <q-icon v-if="slot.isActive" :name="_GetDirectionIconName(slot.dir)" color="weak"
+                class="icon" />
         </div>
     </template>
 
@@ -127,18 +126,16 @@ function _GetDirectionIconName(dir: PL.Direction): string {
     opacity: 0.35;
     background-color: rgb(100, 100, 100);
     border-radius: 8px;
+    overflow: clip;
+    position: relative;
 
     &.active {
         background-color: rgb(216, 216, 216);
     }
 
-    .iconContainer {
+    .icon {
         .centered();
-
-        .icon {
-            font-size: 300px;
-            max-height: 10%;
-        }
+        font-size: 300px;
     }
 }
 

@@ -106,7 +106,7 @@
     <q-page-container>
         <q-page>
             <!-- Make full-page content. -->
-            <div class="q-pa-sm" style="min-height: inherit; height: 0;">
+            <div class="q-pa-sm" style="min-height: inherit; height: 0;overflow: auto;">
                 <slot />
             </div>
         </q-page>
