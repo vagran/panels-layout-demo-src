@@ -4,7 +4,7 @@
     <template #emptyContent="slot">
         <ContentPane :is-empty="true" :selector="null"
             @update:selector="_OnPanelContentSelected(slot.setContent, $event)">
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="centered">
                 <div>
                     <q-icon name="web_asset" color="weak" class="emptyIcon" />
                 </div>
@@ -22,6 +22,26 @@
                 v-on="slot.contentDesc.events ?? {}" />
         </ContentPane>
     </template>
+
+    <template #expandGhostFrom="slot">
+        <div class="expandGhostFromTo" :class="{active: slot.isActive}">
+            <div v-if="!slot.isActive" class="iconContainer">
+                <q-icon name="block" color="weak" class="icon" style="font-size: 200px;"/>
+            </div>
+        </div>
+    </template>
+
+    <template #expandGhostTo="slot">
+        <div class="expandGhostFromTo" :class="{active: slot.isActive}">
+            <div v-if="slot.isActive" class="iconContainer">
+                <q-icon :name="_GetDirectionIconName(slot.dir)" color="weak" class="icon" />
+            </div>
+        </div>
+    </template>
+
+    <template #expandGhostResult="slot">
+        <div class="expandGhostResult" :class="{active: slot.isActive}" />
+    </template>
 </PanelsLayout>
 
 </template>
@@ -29,7 +49,7 @@
 <script setup lang="ts">
 import type * as Vue from "vue"
 import { reactive, ref, watchEffect, computed } from "vue"
-import type * as PL from "panels-layout/src/PublicTypes"
+import * as PL from "panels-layout/src/PublicTypes"
 import * as T from "@/CommonTypes"
 
 import PanelsLayout from "panels-layout/src/PanelsLayout.vue"
@@ -68,10 +88,29 @@ function _OnPanelContentSelected(setter: (content: PL.ContentSelector) => void,
     }
 }
 
+function _GetDirectionIconName(dir: PL.Direction): string {
+    switch (dir) {
+    case PL.Direction.LEFT:
+        return "r_chevron_left"
+    case PL.Direction.RIGHT:
+        return "r_chevron_right"
+    case PL.Direction.UP:
+        return "r_expand_less"
+    case PL.Direction.DOWN:
+        return "r_expand_more"
+    }
+}
+
 </script>
 
-<style scoped land="less">
+<style scoped lang="less">
 
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .panelsLayout {
     width: 100%;
     height: 100%;
@@ -80,6 +119,38 @@ function _OnPanelContentSelected(setter: (content: PL.ContentSelector) => void,
 .emptyIcon {
     font-size: 20vmin;
     max-width: 10%;
+}
+
+.expandGhostFromTo {
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+    background-color: rgb(100, 100, 100);
+    border-radius: 8px;
+
+    &.active {
+        background-color: rgb(216, 216, 216);
+    }
+
+    .iconContainer {
+        .centered();
+
+        .icon {
+            font-size: 300px;
+            max-height: 10%;
+        }
+    }
+}
+
+.expandGhostResult {
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 8px;
+
+    &.active {
+        border-color: rgb(255, 255, 255);
+    }
 }
 
 </style>

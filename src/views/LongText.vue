@@ -2,6 +2,7 @@
 <!-- Parent element ensures we have defined height with overall size matching panel available size.
     So it is easy to set size here. -->
 <q-scroll-area style="height: 100%; width: 100%;">
+    <h4 class="q-my-md">Long text</h4>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque nunc dignissim
     leo ultricies, a tempor lorem tincidunt. Quisque quis ante ut purus porttitor tristique eu
     sit amet sem. Ut lobortis justo massa, non rutrum ipsum lobortis vitae. In commodo tortor
