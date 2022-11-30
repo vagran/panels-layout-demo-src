@@ -32,14 +32,13 @@ createApp(App)
                 primary: "#60afff",
                 secondary: "#1b6b63",
                 accent: "#84478f",
-
                 dark: "#1a2227",
-                "dark-page": "#222b30",
-
                 positive: "#0d6b23",
                 negative: "#9c1121",
                 info: "#1d8499",
-                warning: "#9e7e26"
+                warning: "#9e7e26",
+
+                "dark-page": "#222b30"
             }
         },
         plugins: {},

@@ -2,9 +2,8 @@
 
 <q-layout view="hHh lpR fFf">
 
-    <q-header elevated class="bg-primary-dark text-white" height-hint="98">
+    <q-header elevated class="bg-primary-dark text-white">
         <q-toolbar>
-
             <q-toolbar-title>
                 <q-avatar>
                     <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
@@ -29,11 +28,6 @@
             </div>
         </q-page>
     </q-page-container>
-
-    <q-footer elevated class="bg-grey-8 text-white q-pa-sm">
-        Footer here
-    </q-footer>
-
 </q-layout>
 
 </template>
@@ -47,6 +41,14 @@ const rightDrawerOpen = ref(false)
 </script>
 
 <style lang="less">
+
+.text-dark-page {
+    color: var(--q-dark-page) !important;
+}
+
+.bg-dark-page {
+    background: var(--q-dark-page) !important;
+}
 
 .text-primary-dark {
     color: var(--q-primary-dark) !important;
@@ -73,6 +75,10 @@ body.body--dark {
         &:hover {
             color: #d6f1e8;
         }
+    }
+
+    .q-header, .q-footer {
+        border-color: rgba(255, 255, 255, 0.15) !important;
     }
 }
 </style>

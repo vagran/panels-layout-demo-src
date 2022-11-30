@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>About</h1>
+    <h4 class="q-my-md">About</h4>
     Panels and tabs layout
 </div>
 </template>

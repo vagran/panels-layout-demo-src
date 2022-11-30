@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>View with local state</h1>
+        <h4 class="q-my-md">View with local state</h4>
         Counter: {{counter}}
         <q-btn @click="counter++" />
     </div>

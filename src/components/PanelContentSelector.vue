@@ -3,12 +3,12 @@
     <q-select :options="options" :modelValue="_modelValue" dense
         @update:modelValue="_Emit('update:modelValue', $event.selector)">
         <template v-slot:selected-item="scope">
-            <q-icon :name="scope.opt.icon" size="20px" />
+            <q-icon :name="scope.opt.icon" size="25px" />
         </template>
         <template v-slot:option="scope">
           <q-item v-bind="scope.itemProps">
             <q-item-section avatar>
-              <q-icon :name="scope.opt.icon" />
+              <q-icon :name="scope.opt.icon" size="25px" />
             </q-item-section>
             <q-item-section>
               <q-item-label>{{ scope.opt.label }}</q-item-label>
@@ -53,11 +53,17 @@ const options: ContentOption[] = [{
     label: "Global state",
     icon: "public",
     selector: T.ContentSelector.VIEW_WITH_GLOBAL_STATE
+}, {
+    label: "Long text",
+    icon: "article",
+    selector: T.ContentSelector.LONG_TEXT
 }]
 
 const _modelValue = computed(() => {
-    if (props.modelValue == null) {
-        return null
+    if (props.modelValue === null) {
+        return {
+            icon: "check_box_outline_blank"
+        }
     }
     const option = options.find(opt => opt.selector === props.modelValue)
     return option ?? null
