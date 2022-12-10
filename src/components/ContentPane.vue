@@ -4,9 +4,16 @@
 
     <q-header bordered class="bg-dark-page text-white">
         <q-toolbar style="min-height: 40px;">
-            <PanelComponentSelector class="componentSelector" :modelValue="props.selector"
-                @update:modelValue="_Emit('update:selector', $event)" />
+            <!-- XXX set draggable by plugin -->
+            <div :ref="el => props.setDraggable?.call(null, el)" class="selectorContainer">
+                <q-icon name="drag_indicator" class="dragIcon"/>
+                <PanelComponentSelector class="componentSelector" :modelValue="props.selector"
+                    @update:modelValue="_Emit('update:selector', $event)" />
+            </div>
             <template v-if="props.isEmpty">
+                <div class="emptyTitle">
+                    Empty panel, select some content
+                </div>
             </template>
             <template v-else>
                 <q-separator vertical />
@@ -112,7 +119,7 @@
         </q-page>
     </q-page-container>
 
-    <q-footer bordered class="bg-dark-page text-white q-px-md q-py-xs">
+    <q-footer bordered class="bg-dark-page text-white q-px-md q-py-xs statusLine">
         Some status line
     </q-footer>
 
@@ -129,7 +136,8 @@ import * as T from "@/CommonTypes"
 
 const props = withDefaults(defineProps<{
     selector: T.ContentSelector | null,
-    isEmpty: boolean
+    isEmpty: boolean,
+    setDraggable?: (element: HTMLElement | Vue.Component | null) => void
 }>(), {
     selector: null,
     isEmpty: true
@@ -150,6 +158,38 @@ const _Emit = defineEmits<{
     background-color: var(--q-dark-page);
     border-radius: 8px;
     overflow: clip;
+}
+
+.emptyTitle {
+    font-style: italic;
+    color: #c6d5e4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.statusLine {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.selectorContainer {
+    white-space: nowrap;
+
+    .dragIcon {
+        display: inline-block;
+        font-size: 24px;
+        line-height: 24px;
+        width: 22px;
+        margin-left: -10px;
+        cursor: grab;
+    }
+    .componentSelector {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }
 
 </style>

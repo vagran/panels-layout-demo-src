@@ -3,7 +3,8 @@
 <PanelsLayout class="panelsLayout" :contentDescriptorProvider="_GetContentDescriptor">
     <template #emptyContent="slot">
         <ContentPane :is-empty="true" :selector="null"
-            @update:selector="_OnPanelContentSelected(slot.setContent, $event)">
+            @update:selector="_OnPanelContentSelected(slot.setContent, $event)"
+            :setDraggable="slot.setDraggable">
             <div class="centered">
                 <div>
                     <q-icon name="web_asset" color="weak" class="emptyIcon" />
@@ -17,7 +18,7 @@
 
     <template #contentPane="slot">
         <ContentPane :is-empty="false" :selector="slot.contentSelector"
-            @update:selector="slot.setContent($event)">
+            @update:selector="slot.setContent($event)" :setDraggable="slot.setDraggable">
             <component :is="slot.contentDesc.component" v-bind="slot.contentDesc.props ?? {}"
                 v-on="slot.contentDesc.events ?? {}" />
         </ContentPane>
@@ -40,6 +41,12 @@
 
     <template #expandGhostResult="slot">
         <div class="expandGhostResult" :class="{active: slot.isActive}" />
+    </template>
+
+    <template #dragSource="slot">
+        <div class="dragSource">
+            <q-icon name="r_open_in_new" color="weak" class="icon" />
+        </div>
     </template>
 </PanelsLayout>
 
@@ -120,7 +127,7 @@ function _GetDirectionIconName(dir: PL.Direction): string {
     max-width: 10%;
 }
 
-.expandGhostFromTo {
+.expandGhostFromTo, .dragSource {
     width: 100%;
     height: 100%;
     opacity: 0.35;

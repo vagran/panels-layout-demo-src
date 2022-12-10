@@ -22,7 +22,10 @@ import "@quasar/extras/material-icons-round/material-icons-round.css"
 
 import "@quasar/extras/roboto-font/roboto-font.css"
 
+import {polyfill as mobileDnD} from "mobile-drag-drop";
 
+
+mobileDnD()
 
 createApp(App)
     .use(createPinia())
