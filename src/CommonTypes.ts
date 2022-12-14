@@ -1,6 +1,17 @@
-export enum ContentSelector {
+import * as PL from "panels-layout/src/PublicTypes"
+
+export enum ContentType {
     ABOUT,
     VIEW_WITH_LOCAL_STATE,
     VIEW_WITH_GLOBAL_STATE,
-    LONG_TEXT
+    LONG_TEXT,
+    TABS
+}
+
+export class ContentSelector implements PL.ContentSelector {
+    readonly type: ContentType
+
+    constructor(type: ContentType) {
+        this.type = type
+    }
 }

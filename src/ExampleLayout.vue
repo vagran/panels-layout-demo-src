@@ -2,7 +2,7 @@
 
 <PanelsLayout class="panelsLayout" :contentDescriptorProvider="_GetContentDescriptor">
     <template #emptyContent="slot">
-        <ContentPane :is-empty="true" :selector="null"
+        <ContentPane :isEmpty="true" :isFirstTab="false" :selector="null"
             @update:selector="_OnPanelContentSelected(slot.setContent, $event)"
             :setDraggable="slot.setDraggable">
             <div class="centered">
@@ -17,8 +17,10 @@
     </template>
 
     <template #contentPane="slot">
-        <ContentPane :is-empty="false" :selector="slot.contentSelector"
-            @update:selector="slot.setContent($event)" :setDraggable="slot.setDraggable">
+        <ContentPane :isEmpty="false" :isFirstTab="slot.isTab && slot.tabIndex == 0"
+            :selector="(slot.contentSelector as T.ContentSelector)"
+            @update:selector="slot.setContent($event!)" :setDraggable="slot.setDraggable"
+            @newTab="slot.createTab(new T.ContentSelector(T.ContentType.TABS))">
             <component :is="slot.contentDesc.component" v-bind="slot.contentDesc.props ?? {}"
                 v-on="slot.contentDesc.events ?? {}" />
         </ContentPane>
@@ -65,26 +67,31 @@ import ContentPane from "@/components/ContentPane.vue"
 import AboutView from "@/views/AboutView.vue"
 import ViewWithLocalState from "@/views/ViewWithLocalState.vue"
 import LongText from "@/views/LongText.vue"
+import TabsView from "@/views/TabsView.vue"
 
 const tmpSelector: Vue.Ref<T.ContentSelector | null> = ref(null)
 
 const contentDescriptors: {[selector: number]: PL.ContentDescriptor} = {
-    [T.ContentSelector.ABOUT]: {
+    [T.ContentType.ABOUT]: {
         component: AboutView
     },
-    [T.ContentSelector.VIEW_WITH_LOCAL_STATE]: {
-        component: ViewWithLocalState
+    [T.ContentType.VIEW_WITH_LOCAL_STATE]: {
+        component: ViewWithLocalState,
+        hideInactive: true
     },
-    [T.ContentSelector.VIEW_WITH_GLOBAL_STATE]: {
+    [T.ContentType.VIEW_WITH_GLOBAL_STATE]: {
         component: ViewWithLocalState//XXX
     },
-    [T.ContentSelector.LONG_TEXT]: {
+    [T.ContentType.LONG_TEXT]: {
         component: LongText
+    },
+    [T.ContentType.TABS]: {
+        component: TabsView
     }
 }
 
-function _GetContentDescriptor(selector: T.ContentSelector): PL.ContentDescriptor {
-    return contentDescriptors[selector]
+function _GetContentDescriptor(selector: PL.ContentSelector): PL.ContentDescriptor {
+    return contentDescriptors[(selector as T.ContentSelector).type]
 }
 
 function _OnPanelContentSelected(setter: (content: PL.ContentSelector) => void,

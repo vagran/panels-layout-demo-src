@@ -44,28 +44,33 @@ type ContentOption = {
 const options: ContentOption[] = [{
     label: "About",
     icon: "info",
-    selector: T.ContentSelector.ABOUT
+    selector: new T.ContentSelector(T.ContentType.ABOUT)
 }, {
     label: "Local state",
     icon: "local_offer",
-    selector: T.ContentSelector.VIEW_WITH_LOCAL_STATE
+    selector: new T.ContentSelector(T.ContentType.VIEW_WITH_LOCAL_STATE)
 }, {
     label: "Global state",
     icon: "public",
-    selector: T.ContentSelector.VIEW_WITH_GLOBAL_STATE
+    selector: new T.ContentSelector(T.ContentType.VIEW_WITH_GLOBAL_STATE)
 }, {
     label: "Long text",
     icon: "article",
-    selector: T.ContentSelector.LONG_TEXT
+    selector: new T.ContentSelector(T.ContentType.LONG_TEXT)
+}, {
+    label: "Tabs",
+    icon: "tab",
+    selector: new T.ContentSelector(T.ContentType.TABS)
 }]
 
 const _modelValue = computed(() => {
-    if (props.modelValue === null) {
+    const selector = props.modelValue
+    if (selector === null) {
         return {
             icon: "check_box_outline_blank"
         }
     }
-    const option = options.find(opt => opt.selector === props.modelValue)
+    const option = options.find(opt => opt.selector.type === selector.type)
     return option ?? null
 })
 

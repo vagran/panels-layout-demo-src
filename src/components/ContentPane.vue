@@ -1,5 +1,5 @@
 <template>
-<div class="panel">
+<div class="panel" :class="{firstTab: props.isFirstTab}">
     <q-layout view="hHh lpR fFf" container>
 
     <q-header bordered class="bg-dark-page text-white">
@@ -19,12 +19,15 @@
                 <q-separator vertical />
                 <q-btn stretch flat label="File">
                     <q-menu>
-                        <q-list style="min-width: 100px">
+                        <q-list style="min-width: 150px">
                             <q-item clickable v-close-popup>
                                 <q-item-section>Open...</q-item-section>
                             </q-item>
                             <q-item clickable v-close-popup>
                                 <q-item-section>New...</q-item-section>
+                            </q-item>
+                            <q-item clickable v-close-popup @click="_Emit('newTab')">
+                                <q-item-section>New tab</q-item-section>
                             </q-item>
                             <q-item clickable v-close-popup>
                                 <q-item-section>Save</q-item-section>
@@ -45,7 +48,7 @@
                 <q-separator vertical />
                 <q-btn stretch flat label="Edit">
                     <q-menu>
-                        <q-list style="min-width: 100px">
+                        <q-list style="min-width: 150px">
                             <q-item clickable v-close-popup>
                                 <q-item-section>Undo</q-item-section>
                             </q-item>
@@ -75,7 +78,7 @@
                 <q-separator vertical />
                 <q-btn stretch flat label="View">
                     <q-menu>
-                        <q-list style="min-width: 100px">
+                        <q-list style="min-width: 150px">
                             <q-item clickable v-close-popup>
                                 <q-item-section>Command palette...</q-item-section>
                             </q-item>
@@ -113,7 +116,7 @@
     <q-page-container>
         <q-page>
             <!-- Make full-page content. -->
-            <div class="q-pa-sm" style="min-height: inherit; height: 0;overflow: auto;">
+            <div class="q-pa-sm" style="min-height: inherit; height: 0; overflow: auto; position: relative;">
                 <slot />
             </div>
         </q-page>
@@ -137,14 +140,16 @@ import * as T from "@/CommonTypes"
 const props = withDefaults(defineProps<{
     selector: T.ContentSelector | null,
     isEmpty: boolean,
-    setDraggable?: (element: HTMLElement | Vue.Component | null) => void
+    setDraggable?: (element: HTMLElement | Vue.Component | null) => void,
+    isFirstTab: boolean
 }>(), {
     selector: null,
     isEmpty: true
 })
 
 const _Emit = defineEmits<{
-    (e: "update:selector", value: T.ContentSelector | null): void
+    (e: "update:selector", value: T.ContentSelector | null): void,
+    (e: "newTab"): void
 }>()
 
 </script>
@@ -158,6 +163,10 @@ const _Emit = defineEmits<{
     background-color: var(--q-dark-page);
     border-radius: 8px;
     overflow: clip;
+
+    &.firstTab {
+        border-top-left-radius: 0;
+    }
 }
 
 .emptyTitle {
