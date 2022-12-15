@@ -1,5 +1,5 @@
 <template>
-<div class="panel" :class="{firstTab: props.isFirstTab}">
+<div class="panel" :class="{isTab: props.isTab}">
     <q-layout view="hHh lpR fFf" container>
 
     <q-header bordered class="bg-dark-page text-white">
@@ -141,7 +141,7 @@ const props = withDefaults(defineProps<{
     selector: T.ContentSelector | null,
     isEmpty: boolean,
     setDraggable?: (element: HTMLElement | Vue.Component | null) => void,
-    isFirstTab: boolean
+    isTab: boolean
 }>(), {
     selector: null,
     isEmpty: true
@@ -164,7 +164,7 @@ const _Emit = defineEmits<{
     border-radius: 8px;
     overflow: clip;
 
-    &.firstTab {
+    &.isTab {
         border-top-left-radius: 0;
     }
 }

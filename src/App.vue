@@ -81,4 +81,13 @@ body.body--dark {
         border-color: rgba(255, 255, 255, 0.15) !important;
     }
 }
+
+.codeSpan {
+    font-family: monospace;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    padding: 0 3px;
+    background-color: var(--q-weak);
+}
+
 </style>

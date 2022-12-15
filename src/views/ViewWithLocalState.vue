@@ -4,7 +4,9 @@
         <p>
         Pane local state is preserved when changing the layout. Dragging the pane in one layout
         scope works as well. However, dragging into other layout instance (e.g. inside the right
-        drawer in this example) will lose the local state. Use global state in such cases.
+        drawer in this example) will lose the local state. Use global state in such cases. To
+        preserve state with tabs, use <span class="codeSpan">hideInactive: true</span> option in
+        <span class="codeSpan">ContentDescriptor</span>.
         </p>
         <div>
             Counter: {{counter}}

@@ -2,7 +2,7 @@
 
 <PanelsLayout class="panelsLayout" :contentDescriptorProvider="_GetContentDescriptor">
     <template #emptyContent="slot">
-        <ContentPane :isEmpty="true" :isFirstTab="false" :selector="null"
+        <ContentPane :isEmpty="true" :isTab="false" :selector="null"
             @update:selector="_OnPanelContentSelected(slot.setContent, $event)"
             :setDraggable="slot.setDraggable">
             <div class="centered">
@@ -17,13 +17,23 @@
     </template>
 
     <template #contentPane="slot">
-        <ContentPane :isEmpty="false" :isFirstTab="slot.isTab && slot.tabIndex == 0"
+        <ContentPane :isEmpty="false" :isTab="slot.isTab"
             :selector="(slot.contentSelector as T.ContentSelector)"
             @update:selector="slot.setContent($event!)" :setDraggable="slot.setDraggable"
             @newTab="slot.createTab(new T.ContentSelector(T.ContentType.TABS))">
             <component :is="slot.contentDesc.component" v-bind="slot.contentDesc.props ?? {}"
                 v-on="slot.contentDesc.events ?? {}" />
         </ContentPane>
+    </template>
+
+    <template #tab="slot">
+        <div class="tab" :class="{active: slot.isActive, isFirst: slot.tabIndex == 0}"
+            @click="slot.setActive()">
+            <div class="title">{{(slot.contentDesc as ContentDescriptor).title}}</div>
+            <div class="closeButton">
+                <q-btn round color="page" icon="close" size="6px" @click.stop="slot.closeTab()" />
+            </div>
+        </div>
     </template>
 
     <template #expandGhostFrom="slot">
@@ -69,25 +79,40 @@ import ViewWithLocalState from "@/views/ViewWithLocalState.vue"
 import LongText from "@/views/LongText.vue"
 import TabsView from "@/views/TabsView.vue"
 
-const tmpSelector: Vue.Ref<T.ContentSelector | null> = ref(null)
+interface ContentDescriptorOptions extends PL.ContentDescriptor {
+    title: string
+}
 
-const contentDescriptors: {[selector: number]: PL.ContentDescriptor} = {
-    [T.ContentType.ABOUT]: {
-        component: AboutView
-    },
-    [T.ContentType.VIEW_WITH_LOCAL_STATE]: {
-        component: ViewWithLocalState,
-        hideInactive: true
-    },
-    [T.ContentType.VIEW_WITH_GLOBAL_STATE]: {
-        component: ViewWithLocalState//XXX
-    },
-    [T.ContentType.LONG_TEXT]: {
-        component: LongText
-    },
-    [T.ContentType.TABS]: {
-        component: TabsView
+class ContentDescriptor implements PL.ContentDescriptor {
+    constructor(options: ContentDescriptorOptions) {
+        Object.assign(this, options)
     }
+}
+
+interface ContentDescriptor extends ContentDescriptorOptions {}
+
+const contentDescriptors: {[selector: number]: ContentDescriptor} = {
+    [T.ContentType.ABOUT]: new ContentDescriptor({
+        component: AboutView,
+        title: "About"
+    }),
+    [T.ContentType.VIEW_WITH_LOCAL_STATE]: new ContentDescriptor({
+        component: ViewWithLocalState,
+        title: "Local state",
+        hideInactive: true
+    }),
+    [T.ContentType.VIEW_WITH_GLOBAL_STATE]: new ContentDescriptor({
+        component: ViewWithLocalState,//XXX
+        title: "Global state"
+    }),
+    [T.ContentType.LONG_TEXT]: new ContentDescriptor({
+        component: LongText,
+        title: "Long text long text long text long text"
+    }),
+    [T.ContentType.TABS]: new ContentDescriptor({
+        component: TabsView,
+        title: "Tabs"
+    })
 }
 
 function _GetContentDescriptor(selector: PL.ContentSelector): PL.ContentDescriptor {
@@ -161,6 +186,41 @@ function _GetDirectionIconName(dir: PL.Direction): string {
 
     &.active {
         border-color: rgb(255, 255, 255);
+    }
+}
+
+.tab {
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-left-width: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 4px 5px 0 8px;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .title {
+        display: inline-block;
+        max-width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .closeButton {
+        display: inline-block;
+        align-self: start;
+        margin-left: 5px;
+        margin-top: -2px;
+    }
+
+    &.isFirst {
+        border-left-width: 1px;
+    }
+
+    &.active {
+        border-bottom-width: 0;
+        background-color: var(--q-dark-page);
     }
 }
 
