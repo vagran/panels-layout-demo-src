@@ -28,7 +28,7 @@
 
     <template #tab="slot">
         <div class="tab" :class="{active: slot.isActive, isFirst: slot.tabIndex == 0}"
-            @click="slot.setActive()">
+            @click="slot.setActive()" :title="(slot.contentDesc as ContentDescriptor).title">
             <div class="title">{{(slot.contentDesc as ContentDescriptor).title}}</div>
             <div class="closeButton">
                 <q-btn round color="page" icon="close" size="6px" @click.stop="slot.closeTab()" />

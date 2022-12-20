@@ -5,7 +5,8 @@
     <q-header bordered class="bg-dark-page text-white">
         <q-toolbar style="min-height: 40px;">
             <!-- XXX set draggable by plugin -->
-            <div :ref="el => props.setDraggable?.call(null, el)" class="selectorContainer">
+            <div :ref="el => props.setDraggable?.call(null, 'selector', el)"
+                 class="selectorContainer">
                 <q-icon name="drag_indicator" class="dragIcon"/>
                 <PanelComponentSelector class="componentSelector" :modelValue="props.selector"
                     @update:modelValue="_Emit('update:selector', $event)" />
@@ -140,7 +141,7 @@ import * as T from "@/CommonTypes"
 const props = withDefaults(defineProps<{
     selector: T.ContentSelector | null,
     isEmpty: boolean,
-    setDraggable?: (element: HTMLElement | Vue.Component | null) => void,
+    setDraggable?: (id: any, element: HTMLElement | Vue.Component | null) => void,
     isTab: boolean
 }>(), {
     selector: null,
