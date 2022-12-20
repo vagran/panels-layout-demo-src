@@ -1,6 +1,6 @@
 <template>
 <div class="panel" :class="{isTab: props.isTab}">
-    <q-layout view="hHh lpR fFf" container>
+    <q-layout view="hHh lpR fFf" container class="panelLayoutContainer">
 
     <q-header bordered class="bg-dark-page text-white">
         <q-toolbar style="min-height: 40px;">
@@ -117,7 +117,7 @@
     <q-page-container>
         <q-page>
             <!-- Make full-page content. -->
-            <div class="q-pa-sm" style="min-height: inherit; height: 0; overflow: auto; position: relative;">
+            <div class="q-pa-sm pageContainer">
                 <slot />
             </div>
         </q-page>
@@ -170,6 +170,13 @@ const _Emit = defineEmits<{
     }
 }
 
+.pageContainer {
+    min-height: inherit;
+    height: 0;
+    overflow: auto;
+    position: relative;
+}
+
 .emptyTitle {
     font-style: italic;
     color: #c6d5e4;
@@ -200,6 +207,17 @@ const _Emit = defineEmits<{
         display: inline-block;
         vertical-align: middle;
     }
+}
+
+</style>
+
+<style lang="less">
+
+/* Workaround to prevent scrollbars being shown for a short moment when resizing panels. We have
+ * scrolling handling in pageContainer.
+ */
+.q-layout-container.panelLayoutContainer > div > .scroll {
+    overflow: clip;
 }
 
 </style>
