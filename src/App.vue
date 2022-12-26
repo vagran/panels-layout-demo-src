@@ -17,7 +17,7 @@
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
         <!-- drawer content -->
-        drawer here
+        <ExampleLayout />
     </q-drawer>
 
     <q-page-container>

@@ -60,6 +60,12 @@
             <q-icon name="r_open_in_new" color="weak" class="icon" />
         </div>
     </template>
+
+    <template #dropTarget="slot">
+        <div class="dropTarget">
+            <q-icon :name="_GetDropTargetIcon(slot.mode)" color="weak" class="icon" />
+        </div>
+    </template>
 </PanelsLayout>
 
 </template>
@@ -139,6 +145,17 @@ function _GetDirectionIconName(dir: PL.Direction): string {
     }
 }
 
+function _GetDropTargetIcon(mode: PL.DragAndDropMode): string {
+    switch (mode) {
+    case PL.DragAndDropMode.SWAP:
+        return "swap_horizontal_circle"
+    case PL.DragAndDropMode.MOVE:
+    case PL.DragAndDropMode.MOVE_NEW_TAB:
+        return "input"
+    }
+    return "content_copy"
+}
+
 </script>
 
 <style scoped lang="less">
@@ -159,7 +176,7 @@ function _GetDirectionIconName(dir: PL.Direction): string {
     max-width: 10%;
 }
 
-.expandGhostFromTo, .dragSource {
+.expandGhostFromTo, .dragSource, .dropTarget {
     width: 100%;
     height: 100%;
     opacity: 0.35;
