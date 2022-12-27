@@ -117,7 +117,7 @@
     <q-page-container>
         <q-page>
             <!-- Make full-page content. -->
-            <div class="q-pa-sm pageContainer">
+            <div class="q-pa-sm pageContainer" :style="{overflow: props.isEmpty ? 'clip' : undefined}">
                 <slot />
             </div>
         </q-page>

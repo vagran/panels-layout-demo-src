@@ -5,14 +5,14 @@
         <ContentPane :isEmpty="true" :isTab="false" :selector="null"
             @update:selector="_OnPanelContentSelected(slot.setContent, $event)"
             :setDraggable="slot.setDraggable">
-            <!-- <div class="centered">
+            <div class="centered">
                 <div>
                     <q-icon name="web_asset" color="weak" class="emptyIcon" />
                 </div>
                 <div style="color: var(--q-weak); text-align: center; margin-top: -15px;">
                     Select content
                 </div>
-            </div> -->
+            </div>
         </ContentPane>
     </template>
 
