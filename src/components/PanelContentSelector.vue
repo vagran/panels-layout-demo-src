@@ -61,6 +61,10 @@ const options: ContentOption[] = [{
     label: "Tabs",
     icon: "tab",
     selector: new T.ContentSelector(T.ContentType.TABS)
+}, {
+    label: "Save/Restore",
+    icon: "save_alt",
+    selector: new T.ContentSelector(T.ContentType.SAVE_RESTORE)
 }]
 
 const _modelValue = computed(() => {

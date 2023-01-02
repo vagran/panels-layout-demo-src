@@ -1,6 +1,7 @@
 <template>
 
-<PanelsLayout class="panelsLayout" :contentDescriptorProvider="_GetContentDescriptor">
+<PanelsLayout class="panelsLayout" :contentDescriptorProvider="_GetContentDescriptor"
+    ref="layout">
     <template #emptyContent="slot">
         <ContentPane :isEmpty="true" :isTab="false" :selector="null"
             @update:selector="_OnPanelContentSelected(slot.setContent, $event)"
@@ -72,7 +73,8 @@
 
 <script setup lang="ts">
 import type * as Vue from "vue"
-import { reactive, ref, watchEffect, computed } from "vue"
+import { reactive, ref, watchEffect, computed, shallowRef, onMounted } from "vue"
+import { useQuasar } from "quasar"
 import * as PL from "panels-layout/src/PublicTypes"
 import * as T from "@/CommonTypes"
 
@@ -84,6 +86,15 @@ import ViewWithLocalState from "@/views/ViewWithLocalState.vue"
 import ViewWithGlobalState from "@/views/ViewWithGlobalState.vue"
 import LongText from "@/views/LongText.vue"
 import TabsView from "@/views/TabsView.vue"
+import SaveRestoreView from "@/views/SaveRestoreView.vue"
+
+const props = defineProps<{
+    initialLayout?: PL.LayoutDescriptor
+}>()
+
+const layout = shallowRef<InstanceType<typeof PanelsLayout> | null>(null)
+
+const $q = useQuasar()
 
 interface ContentDescriptorOptions extends PL.ContentDescriptor {
     title: string
@@ -118,6 +129,15 @@ const contentDescriptors: {[selector: number]: ContentDescriptor} = {
     [T.ContentType.TABS]: new ContentDescriptor({
         component: TabsView,
         title: "Tabs"
+    }),
+    [T.ContentType.SAVE_RESTORE]: new ContentDescriptor({
+        component: SaveRestoreView,
+        title: "Save/Restore",
+        events: {
+            save: SaveLayout,
+            restore: RestoreLayout,
+            clear: ClearLayout
+        }
     })
 }
 
@@ -155,6 +175,47 @@ function _GetDropTargetIcon(mode: PL.DragAndDropMode): string {
     }
     return "content_copy"
 }
+
+function SaveLayout() {
+    const layoutDesc = layout.value!.GetLayout()
+    console.log("save", layoutDesc)
+    localStorage.setItem("layout", JSON.stringify(layoutDesc))
+    $q.notify({
+        message: "Layout saved",
+        icon: "check",
+        color: "positive"
+    })
+}
+
+function RestoreLayout() {
+    const s = localStorage.getItem("layout")
+    if (s === null) {
+        $q.notify({
+            message: "No saved layout",
+            icon: "warning",
+            color: "warning"
+        })
+        return
+    }
+    const layoutDesc = JSON.parse(s)
+    console.log("restore", layoutDesc)
+    layout.value!.SetLayout(layoutDesc)
+    $q.notify({
+        message: "Layout restored",
+        icon: "check",
+        color: "positive"
+    })
+}
+
+function ClearLayout() {
+    layout.value!.ClearLayout()
+}
+
+onMounted(() => {
+    if (props.initialLayout) {
+        layout.value!.SetLayout(props.initialLayout)
+    }
+})
 
 </script>
 

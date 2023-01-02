@@ -1,7 +1,7 @@
 import { createApp } from "vue"
 import App from "./App.vue"
 import { createPinia } from "pinia"
-import { Quasar, setCssVar, colors,
+import { Quasar, Notify, setCssVar, colors,
     QBtn,
     QFooter,
     QHeader,
@@ -45,7 +45,7 @@ createApp(App)
                 "dark-page": "#222b30"
             }
         },
-        plugins: {},
+        plugins: { Notify },
         components: {
             QBtn,
             QFooter,

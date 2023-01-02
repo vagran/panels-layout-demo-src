@@ -24,7 +24,7 @@
         <q-page>
             <!-- Make full-page content. -->
             <div class="q-pa-sm" style="min-height: inherit; height: 0;">
-                <ExampleLayout />
+                <ExampleLayout :initialLayout="initialLayout"/>
             </div>
         </q-page>
     </q-page-container>
@@ -37,6 +37,81 @@ import { ref } from "vue"
 import ExampleLayout from "@/ExampleLayout.vue"
 
 const rightDrawerOpen = ref(false)
+
+const initialLayout = {
+    "width": 1604,
+    "height": 936,
+    "edges": [
+        {
+            "id": "eyw3k821t3hc7zgxb",
+            "orientation": 0,
+            "position": 708
+        },
+        {
+            "id": "eyw3k81528zoh5tb5",
+            "orientation": 1,
+            "position": 435.6152512998267
+        },
+        {
+            "id": "eyw3k8217vnrxtrpr",
+            "orientation": 0,
+            "position": 1142.9999999999998
+        }
+    ],
+    "panels": [
+        {
+            "left": null,
+            "right": "eyw3k821t3hc7zgxb",
+            "top": null,
+            "bottom": null,
+            "content": [
+                {
+                    "type": 0
+                }
+            ],
+            "activeIdx": 0
+        },
+        {
+            "left": "eyw3k821t3hc7zgxb",
+            "right": null,
+            "top": null,
+            "bottom": "eyw3k81528zoh5tb5",
+            "content": [
+                {
+                    "type": 4
+                },
+                {
+                    "type": 5
+                }
+            ],
+            "activeIdx": 0
+        },
+        {
+            "left": "eyw3k821t3hc7zgxb",
+            "right": "eyw3k8217vnrxtrpr",
+            "top": "eyw3k81528zoh5tb5",
+            "bottom": null,
+            "content": [
+                {
+                    "type": 1
+                }
+            ],
+            "activeIdx": 0
+        },
+        {
+            "left": "eyw3k8217vnrxtrpr",
+            "right": null,
+            "top": "eyw3k81528zoh5tb5",
+            "bottom": null,
+            "content": [
+                {
+                    "type": 2
+                }
+            ],
+            "activeIdx": 0
+        }
+    ]
+}
 
 </script>
 

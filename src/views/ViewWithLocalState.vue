@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <q-scroll-area style="height: 100%; width: 100%;">
         <h4 class="q-my-md">View with local state</h4>
         <p>
         Pane local state is preserved when changing the layout. Dragging the pane in one layout
@@ -12,7 +12,7 @@
             Counter: {{counter}}
             <q-btn class="q-mx-sm" color="primary-dark" @click="counter++" label="++"/>
         </div>
-    </div>
+    </q-scroll-area>
 </template>
 
 <script setup lang="ts">

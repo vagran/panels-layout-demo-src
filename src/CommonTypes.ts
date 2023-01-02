@@ -5,7 +5,8 @@ export enum ContentType {
     VIEW_WITH_LOCAL_STATE,
     VIEW_WITH_GLOBAL_STATE,
     LONG_TEXT,
-    TABS
+    TABS,
+    SAVE_RESTORE
 }
 
 export class ContentSelector implements PL.ContentSelector {
