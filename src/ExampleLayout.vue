@@ -22,7 +22,7 @@
             @update:selector="slot.setContent($event!)" :setDraggable="slot.setDraggable"
             @newTab="slot.createTab(new T.ContentSelector(T.ContentType.TABS))">
             <component :is="slot.contentDesc.component" v-bind="slot.contentDesc.props ?? {}"
-                v-on="slot.contentDesc.events ?? {}" />
+                v-on="slot.contentDesc.events ?? {}" :layout="slot"/>
         </ContentPane>
     </template>
 
@@ -77,11 +77,11 @@ import * as PL from "panels-layout/src/PublicTypes"
 import * as T from "@/CommonTypes"
 
 import PanelsLayout from "panels-layout/src/PanelsLayout.vue"
-import PanelComponentSelector from "@/components/PanelContentSelector.vue"
 import ContentPane from "@/components/ContentPane.vue"
 
 import AboutView from "@/views/AboutView.vue"
 import ViewWithLocalState from "@/views/ViewWithLocalState.vue"
+import ViewWithGlobalState from "@/views/ViewWithGlobalState.vue"
 import LongText from "@/views/LongText.vue"
 import TabsView from "@/views/TabsView.vue"
 
@@ -108,7 +108,7 @@ const contentDescriptors: {[selector: number]: ContentDescriptor} = {
         hideInactive: true
     }),
     [T.ContentType.VIEW_WITH_GLOBAL_STATE]: new ContentDescriptor({
-        component: ViewWithLocalState,//XXX
+        component: ViewWithGlobalState,
         title: "Global state"
     }),
     [T.ContentType.LONG_TEXT]: new ContentDescriptor({
