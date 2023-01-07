@@ -20,6 +20,3 @@ import useGlobalState from "@/GlobalState"
 const state = useGlobalState()
 
 </script>
-
-<style scoped land="less">
-</style>
