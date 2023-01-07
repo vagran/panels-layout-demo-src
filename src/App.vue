@@ -6,12 +6,18 @@
         <q-toolbar>
             <q-toolbar-title>
                 <q-avatar>
-                    <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+                    <img src="@/assets/icon.svg">
                 </q-avatar>
                 Panels and tabs layout system
             </q-toolbar-title>
-
-            <q-btn dense flat round icon="menu" @click="rightDrawerOpen = !rightDrawerOpen" />
+            <q-space />
+            <q-btn icon="fab fa-github" color="primary-dark" label="panels-layout on GitHub" no-caps
+                   class="q-mx-sm" type="a"
+                   href="https://github.com/vagran/panels-layout" />
+            <q-btn icon="fab fa-github" color="primary-dark" label="This example on GitHub" no-caps
+                   class="q-mx-sm q-mr-xl" type="a"
+                   href="https://github.com/vagran/panels-layout-demo-src" />
+            <q-btn dense flat round icon="r_view_sidebar" @click="rightDrawerOpen = !rightDrawerOpen" />
         </q-toolbar>
     </q-header>
 

@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5954"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01, custom)"
-   sodipodi:docname="favicon.svg"
+   sodipodi:docname="icon.svg"
    inkscape:export-filename="../786427ad/favicon.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -18,11 +18,11 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview5956"
-     pagecolor="#ffffff"
+     pagecolor="#494949"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
@@ -43,7 +43,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:none;stroke:#1a2227;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:normal"
+       style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:normal;stroke-opacity:1"
        id="rect6803"
        width="23.961004"
        height="23.961004"
@@ -51,19 +51,19 @@
        y="4.0194998"
        ry="4.5460529" />
     <path
-       style="fill:#1a2227;fill-opacity:1;fill-rule:evenodd;stroke:#1a2227;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        d="M 18.499599,3.9991992 V 27.000801"
        id="path6859" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#1a2227;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 18.499599,11 h 9.480905"
        id="path7423" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#1a2227;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 18.499599,20 h 9.480905"
        id="path7425" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#1a2227;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 18.499599,15 H 4.0194998"
        id="path7427" />
   </g>
