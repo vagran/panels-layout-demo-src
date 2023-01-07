@@ -20,9 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type * as Vue from "vue"
-import { reactive, ref, watchEffect, computed } from "vue"
-import type * as Q from "quasar/dist/types"
+import { computed } from "vue"
 import * as T from "@/CommonTypes"
 
 const props = withDefaults(defineProps<{

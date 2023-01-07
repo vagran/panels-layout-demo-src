@@ -133,8 +133,6 @@
 
 <script setup lang="ts">
 import type * as Vue from "vue"
-import { reactive, ref, watchEffect, computed } from "vue"
-import type * as Q from "quasar/dist/types"
 import PanelComponentSelector from "@/components/PanelContentSelector.vue"
 import * as T from "@/CommonTypes"
 

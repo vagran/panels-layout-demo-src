@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
 import useGlobalState from "@/GlobalState"
 
 const state = useGlobalState()

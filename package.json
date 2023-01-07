@@ -1,9 +1,8 @@
 {
     "name": "@lavaflow/panels-layout-demo",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Demo example of @lavaflow/panels-layout",
     "author": "Artyom Lebedev <artyom.lebedev@gmail.com>",
-    "private": true,
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build --emptyOutDir"
@@ -17,7 +16,6 @@
         "vue": "^3.2.41",
         "quasar": "^2.10.0",
         "@quasar/extras": "^1.15.5",
-        "pinia": "^2.0.23",
         "panels-layout": "./modules/panels-layout",
         "mobile-drag-drop": "3.0.0-rc.0"
     },

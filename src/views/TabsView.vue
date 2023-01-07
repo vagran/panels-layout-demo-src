@@ -23,9 +23,8 @@
 import * as T from "@/CommonTypes"
 import * as PL from "panels-layout/src/PublicTypes"
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
     layout: PL.ContentSlotProps
-}>(), {
+}>()
 
-})
 </script>

@@ -72,8 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import type * as Vue from "vue"
-import { reactive, ref, watchEffect, computed, shallowRef, onMounted } from "vue"
+import { shallowRef, onMounted } from "vue"
 import { useQuasar } from "quasar"
 import * as PL from "panels-layout/src/PublicTypes"
 import * as T from "@/CommonTypes"

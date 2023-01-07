@@ -1,6 +1,5 @@
 import { createApp } from "vue"
 import App from "./App.vue"
-import { createPinia } from "pinia"
 import { Quasar, Notify, setCssVar, colors,
     QBtn,
     QFooter,
@@ -28,7 +27,6 @@ import {polyfill as mobileDnD} from "mobile-drag-drop";
 mobileDnD()
 
 createApp(App)
-    .use(createPinia())
     .use(Quasar, {
         config: {
             dark: true,
