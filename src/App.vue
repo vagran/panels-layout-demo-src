@@ -165,4 +165,17 @@ body.body--dark {
     background-color: var(--q-weak);
 }
 
+[v-cloak] > * {
+    display:none;
+}
+
+[v-cloak].hasLoadingPlaceholder::before {
+    content: " ";
+    display: block;
+    width: 500px;
+    height: 150px;
+    background-image: url("./assets/loading-placeholder.svg");
+    background-size: cover;
+}
+
 </style>
