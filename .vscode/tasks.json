@@ -36,6 +36,12 @@
                     "PATH": "${config:env.nodeDir}/bin:${env:PATH}"
                 }
             }
+        },
+        {
+            "label": "Deploy",
+            "type": "process",
+            "command": "bash",
+            "args": ["${workspaceFolder}/deploy.sh"]
         }
     ]
 }

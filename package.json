@@ -3,9 +3,10 @@
     "version": "1.0.0",
     "description": "Demo example of @lavaflow/panels-layout",
     "author": "Artyom Lebedev <artyom.lebedev@gmail.com>",
+    "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vue-tsc --noEmit && vite build --emptyOutDir"
+        "build": "vue-tsc --noEmit && vite build --emptyOutDir --base=/panels-layout-demo/"
     },
     "debug": {
         "env": {
